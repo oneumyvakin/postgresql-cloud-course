@@ -5,3 +5,4 @@
 - [Установка и настройка PostgreSQL в контейнере Docker](homework/02/)
 - [Настройка дисков для PostgreSQL](homework/03/)
 - [Тюнинг PostgreSQL](homework/04/)
+- [Резеврное копирование PostgreSQL](homework/05/)
