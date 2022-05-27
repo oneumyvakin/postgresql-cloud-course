@@ -6,3 +6,4 @@
 - [Настройка дисков для PostgreSQL](homework/03/)
 - [Тюнинг PostgreSQL](homework/04/)
 - [Резеврное копирование PostgreSQL](homework/05/)
+- [Кластер Patroni](homework/07/)
