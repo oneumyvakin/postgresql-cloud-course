@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "custom-postgresql.fullname" . }}
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+      protocol: TCP
+  selector:
+    app: {{ include "custom-postgresql.fullname" . }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-{{ include "custom-postgresql.fullname" . }}
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  local:
+    path: "/mnt/data/pv-{{ include "custom-postgresql.fullname" . }}"
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - db1
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "custom-postgresql.fullname" . }}
+spec:
+  serviceName: {{ include "custom-postgresql.fullname" . }}
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "custom-postgresql.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "custom-postgresql.fullname" . }}
+    spec:
+      containers:
+        - name: postgres
+          image: {{ .Values.image }}
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.db }}
+            - name: POSTGRES_USER
+              value: {{ .Values.user }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.password }}
+          volumeMounts:
+            - name: postgredb
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+  volumeClaimTemplates:
+    - metadata:
+        name: postgredb
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: standard
+        resources:
+          requests:
+            storage: 1Gi

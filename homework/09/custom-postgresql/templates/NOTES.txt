@@ -1,0 +1,5 @@
+1. Create directory for PostgreSQL data: mkdir -p /mnt/data/pv-{{ include "custom-postgresql.fullname" . }}
+2. Use following commands to connect to database:
+export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "custom-postgresql.fullname" . }})
+export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+PGPASSWORD={{ .Values.password }} psql -U {{ .Values.user }} -h $NODE_IP -p $NODE_PORT {{ .Values.db }}

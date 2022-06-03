@@ -7,3 +7,4 @@
 - [Тюнинг PostgreSQL](homework/04/)
 - [Резеврное копирование PostgreSQL](homework/05/)
 - [Кластер Patroni](homework/07/)
+- [PostgreSQL в Kubernetes](homework/09/)

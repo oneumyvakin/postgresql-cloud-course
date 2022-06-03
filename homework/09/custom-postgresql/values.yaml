@@ -1,0 +1,7 @@
+# Default values for custom-postgresql.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+db: myapp
+user: myuser
+password: passwd
+image: postgres:14.3-alpine3.16
