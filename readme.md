@@ -8,3 +8,4 @@
 - [Резеврное копирование PostgreSQL](homework/05/)
 - [Кластер Patroni](homework/07/)
 - [PostgreSQL в Kubernetes](homework/09/)
+- [Работа с большим объемом реальных данных](homework/10/)
