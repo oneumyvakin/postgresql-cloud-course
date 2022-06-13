@@ -9,3 +9,4 @@
 - [Кластер Patroni](homework/07/)
 - [PostgreSQL в Kubernetes](homework/09/)
 - [Работа с большим объемом реальных данных](homework/10/)
+- [Работа с кластером высокой доступности](homework/12/)
