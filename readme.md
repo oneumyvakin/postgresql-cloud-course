@@ -13,3 +13,4 @@
 - [Работа с горизонтально масштабируемым кластером 1](homework/14/)
 - [Работа с горизонтально масштабируемым кластером 2](homework/15/)
 - [Работа с Citus в Kubernetes](homework/16/)
+- [PostgreSQL и VKcloud](homework/21/)
